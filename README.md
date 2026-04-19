@@ -1,66 +1,197 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Percetakan - Print Shop Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A comprehensive Laravel-based management system for print shop businesses (Percetakan) with point-of-sale, inventory, employee management, and financial tracking capabilities.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Authentication & Authorization
+- Role-based login system (Admin & Kasir)
+- Login role selection at authentication
+- Automatic redirect based on user role
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Admin Features
+- **Dashboard**: Overview with total transactions, revenue, expenses, and active employees
+- **User Management**: Create, edit, delete, and assign roles to users
+- **Employee Management**: Full CRUD operations for employee records (name, position, phone, email, hire date, salary, status)
+- **Product/Inventory Management**: 
+  - Product catalog with SKU, category, stock, pricing
+  - Stock In tracking (supplier, reference number)
+  - Stock Out tracking (reason, date)
+  - Low stock alerts
+- **Finance Module**:
+  - Income tracking (category, description, amount, status)
+  - Expense tracking (category, description, amount, status)
+  - Monthly reports
+- **Audit Logs**: Complete activity tracking for all database changes
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Kasir Features
+- **Dashboard**: Today's transaction count and revenue
+- **Transaction Processing**:
+  - Create new transactions with multiple items
+  - Service type selection (print, photocopy, design, other)
+  - Payment method (cash/transfer)
+  - Automatic receipt generation
 
-## Learning Laravel
+### General Features
+- Profile management
+- Responsive design
+- Transaction receipts with print functionality
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Tech Stack
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Framework**: Laravel 11
+- **Database**: MySQL (phpMyAdmin)
+- **Authentication**: Laravel Breeze
+- **Role & Permission**: Spatie Permission
+- **Frontend**: Tailwind CSS + Blade Templates
+- **PHP Version**: 8.3+
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Installation Guide
 
-## Laravel Sponsors
+### Prerequisites
+- PHP 8.3+
+- Composer
+- MySQL
+- Node.js (for Tailwind/Vite)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Steps
 
-### Premium Partners
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd percetakan
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+2. **Install dependencies**
+   ```bash
+   composer install
+   npm install
+   ```
 
-## Contributing
+3. **Environment setup**
+   ```bash
+   cp .env.example .env
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. **Configure database** (in `.env` file)
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=percetakan
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
 
-## Code of Conduct
+5. **Create database**
+   - Open phpMyAdmin
+   - Create a new database named `percetakan`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6. **Run migrations & seeders**
+   ```bash
+   php artisan migrate
+   php artisan db:seed --class=UserSeeder
+   ```
 
-## Security Vulnerabilities
+7. **Build assets**
+   ```bash
+   npm run build
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+8. **Start the server**
+   ```bash
+   php artisan serve
+   ```
+
+## Default Users
+
+After running the seeder, the following users are available:
+
+| Role  | Email                   | Password   |
+|-------|-------------------------|------------|
+| Admin | admin@percetakan.com    | 12345678   |
+| Kasir | kasir1@percetakan.com   | 12345678   |
+| Kasir | kasir2@percetakan.com  | 12345678   |
+
+## System Modules
+
+### Admin Routes
+- `/dashboard` - Admin dashboard
+- `/dashboard/users` - User management (CRUD)
+- `/dashboard/employees` - Employee management (CRUD)
+- `/dashboard/products` - Product/inventory management (CRUD + stock operations)
+- `/dashboard/finance` - Income/expense tracking & reports
+- `/dashboard/audit-logs` - System activity logs
+
+### Kasir Routes
+- `/kasir` - Kasir dashboard
+- `/kasir/transactions` - Transaction list
+- `/kasir/transactions/create` - New transaction
+- `/kasir/transactions/{id}/receipt` - Print receipt
+
+## Database Overview
+
+### Core Tables
+- `users` - System users with Spatie roles
+- `roles` / `permissions` - Role-based access control
+- `employees` - Employee records
+- `products` - Inventory items
+- `stock_ins` / `stock_outs` - Stock movement tracking
+- `transactions` - Sales transactions
+- `transaction_details` - Transaction line items
+- `incomes` / `expenses` - Financial records
+- `audit_logs` - Activity logging
+
+## Folder Structure
+
+```
+app/
+├── Http/
+│   └── Controllers/
+│       ├── Admin/          # Admin controllers (Dashboard, Users, Employees, Products, Finance, Audit)
+│       ├── Auth/            # Authentication controllers
+│       └── Kasir/           # Kasir controllers (Transaction)
+├── Models/                  # Eloquent models
+├── Observers/               # Event observers (Audit logging)
+└── Providers/               # Service providers
+resources/
+└── views/
+    ├── admin/              # Admin views
+    ├── kasir/              # Kasir views
+    └── layouts/            # Layout templates
+database/
+├── migrations/             # Database migrations
+└── seeders/                # Database seeders
+routes/
+├── web.php                # Main web routes
+└── auth.php               # Authentication routes
+```
+
+## Screenshots
+
+> Placeholder for system screenshots:
+> - Login Page with Role Selection
+> - Admin Dashboard
+> - Product Management
+> - Transaction Form
+> - Receipt Preview
+
+## Future Improvements
+
+1. **Payroll System** - Monthly salary calculation and payment tracking
+2. **Reports Module** - Advanced analytics and export features
+3. **Customer Management** - Customer database and loyalty programs
+4. **API Integration** - RESTful API for mobile apps
+5. **Notifications** - Low stock alerts and daily reports via email
+6. **Multi-branch Support** - Centralized management for multiple locations
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Acknowledgments
+
+- Laravel Framework
+- Laravel Breeze for authentication
+- Spatie for role-permission management
+- Tailwind CSS for styling
