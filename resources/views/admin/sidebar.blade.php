@@ -1,4 +1,4 @@
-<aside class="fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-200 hidden lg:block">
+<!-- <aside class="fixed inset-y-0 left-0 w-64 bg-white border-r border-gray-200 hidden lg:block">
     <div class="p-6">
         <h2 class="text-lg font-semibold text-gray-800">{{ config('app.name') }}</h2>
     </div>
@@ -27,4 +27,4 @@
             Audit Logs
         </a>
     </nav>
-</aside>
+</aside> -->

@@ -4,7 +4,7 @@
 <div class="space-y-6">
     <div class="flex justify-between items-center">
         <h1 class="text-2xl font-bold text-gray-800">Kasir Dashboard</h1>
-        <a href="{{ route('kasir.transactions.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">
+        <a href="{{ route('kasir.transactions.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">
             New Transaction
         </a>
     </div>
